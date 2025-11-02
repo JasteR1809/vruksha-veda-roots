@@ -26,11 +26,57 @@ const TreeDetail = () => {
 
   const playAudio = () => {
     if ('speechSynthesis' in window) {
+      // Cancel any ongoing speech
+      speechSynthesis.cancel();
+      
       const utterance = new SpeechSynthesisUtterance(tree.shloka.sanskrit);
+      
+      // Get available voices
+      const voices = speechSynthesis.getVoices();
+      
+      // Try to find the best Hindi/Indian voice
+      const hindiVoice = voices.find(voice => 
+        voice.lang.startsWith('hi') || 
+        voice.lang.includes('IN') ||
+        voice.name.toLowerCase().includes('hindi') ||
+        voice.name.toLowerCase().includes('indian')
+      );
+      
+      // If no Hindi voice, try to find a high-quality English voice as fallback
+      const qualityVoice = voices.find(voice => 
+        voice.name.toLowerCase().includes('premium') ||
+        voice.name.toLowerCase().includes('enhanced') ||
+        voice.name.toLowerCase().includes('natural')
+      );
+      
+      // Set the best available voice
+      if (hindiVoice) {
+        utterance.voice = hindiVoice;
+      } else if (qualityVoice) {
+        utterance.voice = qualityVoice;
+      }
+      
       utterance.lang = 'hi-IN';
-      utterance.rate = 0.8;
-      speechSynthesis.speak(utterance);
-      toast.success("Playing Sanskrit shloka");
+      utterance.rate = 0.75; // Slower for better clarity
+      utterance.pitch = 1.0;
+      utterance.volume = 1.0;
+      
+      utterance.onstart = () => {
+        toast.success("Playing Sanskrit shloka");
+      };
+      
+      utterance.onerror = (event) => {
+        toast.error("Error playing audio: " + event.error);
+      };
+      
+      // Ensure voices are loaded before speaking
+      if (voices.length === 0) {
+        speechSynthesis.addEventListener('voiceschanged', () => {
+          speechSynthesis.speak(utterance);
+        }, { once: true });
+      } else {
+        speechSynthesis.speak(utterance);
+      }
     } else {
       toast.error("Speech synthesis not supported in your browser");
     }
