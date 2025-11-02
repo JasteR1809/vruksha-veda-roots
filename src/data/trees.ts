@@ -81,5 +81,97 @@ export const trees: Tree[] = [
       transliteration: "Aśvatthaḥ sarvavṛkṣāṇāṁ brahmā lokamaharṣiṇām | Pīpalo vṛkṣarājaḥ syāt sarvapāpapraṇāśanaḥ",
       meaning: "Among all trees, the Peepal is like Brahma among the great sages. The Peepal is the king of trees and destroyer of all sins."
     }
+  },
+  {
+    id: "falgu",
+    name: "Falgu",
+    botanical: "Ficus carica",
+    description: "The healing fig tree - known for its nutritious fruits and powerful therapeutic properties",
+    image: "/src/assets/falgu-tree.jpg",
+    about: "Falgu, also known as the common fig tree, is a deciduous tree from the Moraceae family. Native to the Mediterranean and western Asia, this tree has been cultivated for thousands of years for its sweet, nutritious fruits. In Ayurveda, the fig tree is highly valued for its medicinal properties. Every part of the tree - fruits, leaves, and latex - is used in traditional medicine. The tree thrives in warm, dry climates and is known for its distinctive lobed leaves and delicious fruits that can be eaten fresh or dried.",
+    medicinalUses: [
+      "Treats anemia by increasing hemoglobin levels",
+      "Helps manage diabetes by regulating blood sugar",
+      "Supports liver health and treats liver disorders",
+      "Aids in cancer prevention with antioxidant properties",
+      "Treats skin diseases including leprosy",
+      "Improves digestive health and relieves constipation",
+      "Strengthens bones and prevents osteoporosis",
+      "Boosts immunity and overall vitality"
+    ],
+    shloka: {
+      sanskrit: "मलः तम्भा शीतला तुवरा जात्। फिप णा व शा मलाः।",
+      transliteration: "Malaḥ tambhā śītalā tuvarā jāt | Phipa ṇā va śā malāḥ",
+      meaning: "The Falgu fruit is cooling, astringent, and beneficial for health, purifying the body and promoting wellness."
+    }
+  },
+  {
+    id: "gandha-prasarini",
+    name: "Gandha Prasarini",
+    botanical: "Paederia foetida",
+    description: "The fragrant healer - renowned for treating neuromuscular disorders and joint pain",
+    image: "/src/assets/gandha-prasarini-tree.jpg",
+    about: "Gandha Prasarini, also known as Sarani or Rajabala, is a climbing vine from the Rubiaceae family. This plant is famous for its distinctive strong odor and powerful therapeutic properties. In Ayurveda, it is especially valued for treating Vata disorders - conditions related to the nervous system and musculoskeletal problems. The plant grows widely in tropical regions and has been used for centuries in traditional medicine. Its leaves, roots, and whole plant are utilized for their healing properties, particularly in treating chronic pain and inflammation.",
+    medicinalUses: [
+      "Treats neuromuscular disorders and Vata imbalances",
+      "Relieves rheumatoid arthritis and joint inflammation",
+      "Effective remedy for sciatica and nerve pain",
+      "Reduces chronic joint pain and stiffness",
+      "Helps manage paralysis and nerve disorders",
+      "Treats spondylitis and spinal problems",
+      "Reduces inflammation and swelling in muscles",
+      "Strengthens bones and improves mobility"
+    ],
+    shloka: {
+      sanskrit: "सारणी राजबला भद्रप ण तापनी। सरणी सारणी भा बला चािप कटम्भ रा॥ सारिरणी या बलस धानक सरा। ी य णा ा त ा ा तर कफापहा॥",
+      transliteration: "Sāraṇī rājabala bhadrapaṇa tāpanī | Saraṇī sāraṇī bhā balā cāpi kaṭambha rā || Sāriraṇī yā balasa dhānaka sarā | ī ya ṇā ā ta ā ā tara kaphāpahā",
+      meaning: "Gandha Prasarini, also known as Rajabala, is the supreme strength-giver, destroyer of pain, and remover of Kapha dosha, bringing relief to joints and muscles."
+    }
+  },
+  {
+    id: "jambu",
+    name: "Jambu",
+    botanical: "Syzygium cumini",
+    description: "The black plum tree - celebrated for diabetes management and dental health",
+    image: "/src/assets/jambu-tree.jpg",
+    about: "Jambu, also known as the Indian Blackberry or Jambul tree, is an evergreen tree from the Myrtaceae family. This majestic tree is native to the Indian subcontinent and has been revered in Ayurveda for thousands of years. The tree produces delicious purple-black fruits that are not only tasty but also highly medicinal. Every part of the tree - fruits, seeds, leaves, and bark - has therapeutic value. The tree is particularly famous for its effectiveness in managing diabetes and has been used in traditional medicine to control blood sugar levels naturally.",
+    medicinalUses: [
+      "Controls and manages diabetes effectively",
+      "Treats tooth decay and strengthens gums",
+      "Relieves diarrhea and digestive disorders",
+      "Purifies blood and improves circulation",
+      "Treats mouth ulcers and oral infections",
+      "Strengthens immune system",
+      "Improves skin health and complexion",
+      "Supports liver and spleen health"
+    ],
+    shloka: {
+      sanskrit: "फ ा कथिथता नन्दी राजजम् हाफा। तथा रथिभपा च हाजम् रिप ता। राजजम् फ वादु िव भ रोचन॥",
+      transliteration: "Pha ā kathithitā nandī rājaajam hāphā | Tathā rathibhapā cha hājam ripa tā | Rājajam pha vādu vi bha rochana",
+      meaning: "Jambu, the king of fruits, is sweet and astringent, beneficial for diabetes, and brings joy and health to those who consume it."
+    }
+  },
+  {
+    id: "japa",
+    name: "Japa",
+    botanical: "Hibiscus rosa-sinensis",
+    description: "The China rose - treasured for hair care, skin health, and anti-inflammatory properties",
+    image: "/src/assets/japa-tree.jpg",
+    about: "Japa, commonly known as the China Rose or Hibiscus, is a flowering shrub from the Malvaceae family. This beautiful plant is recognized by its large, vibrant red flowers that are not only ornamental but also highly medicinal. In Ayurveda, Japa is especially renowned for promoting hair growth and treating various skin conditions. The flowers, leaves, roots, and bark all possess therapeutic properties. The plant thrives in tropical and subtropical climates and has been used in traditional medicine and religious ceremonies for centuries. Its cooling nature makes it ideal for treating inflammation and heat-related conditions.",
+    medicinalUses: [
+      "Promotes hair growth and prevents hair fall",
+      "Prevents premature greying of hair",
+      "Treats inflammation and local swelling",
+      "Heals skin disorders including acne and eczema",
+      "Reduces boils and skin eruptions",
+      "Cools the body and treats heat-related conditions",
+      "Strengthens hair roots when used in oil preparations",
+      "Improves skin complexion and texture"
+    ],
+    shloka: {
+      sanskrit: "जपा यश व नी रक्त पु पा ड यर सा। वा िपह रा मा शोथ ा नाशिशनी॥",
+      transliteration: "Japā yaśa va nī rakta puṣpā ḍa yara sā | Vā piha rā mā śotha ā nāśaśinī",
+      meaning: "Japa, the glorious one with red flowers, is the destroyer of inflammation and swelling, bringing beauty and health to hair and skin."
+    }
   }
 ];
