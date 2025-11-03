@@ -29,75 +29,52 @@ const TreeDetail = () => {
       // Cancel any ongoing speech
       speechSynthesis.cancel();
       
-      const speak = () => {
+      // Small delay to ensure cancellation completes
+      setTimeout(() => {
         const utterance = new SpeechSynthesisUtterance(tree.shloka.sanskrit);
         
         // Get available voices
         const voices = speechSynthesis.getVoices();
-        console.log('Available voices:', voices.length);
-        console.log('All voices:', voices.map(v => ({ name: v.name, lang: v.lang })));
         
-        // Try to find the best Hindi/Indian voice
-        const hindiVoice = voices.find(voice => 
-          voice.lang.startsWith('hi') || 
-          voice.lang.includes('IN') ||
-          voice.name.toLowerCase().includes('hindi') ||
-          voice.name.toLowerCase().includes('indian')
+        // Find a Hindi voice or default voice
+        let selectedVoice = voices.find(voice => 
+          voice.lang === 'hi-IN' || 
+          voice.lang === 'hi' ||
+          voice.lang.startsWith('hi-')
         );
         
-        console.log('Hindi voice found:', hindiVoice?.name);
-        
-        // If no Hindi voice, try to find a high-quality English voice as fallback
-        const qualityVoice = voices.find(voice => 
-          voice.name.toLowerCase().includes('premium') ||
-          voice.name.toLowerCase().includes('enhanced') ||
-          voice.name.toLowerCase().includes('natural')
-        );
-        
-        // Set the best available voice
-        if (hindiVoice) {
-          utterance.voice = hindiVoice;
-        } else if (qualityVoice) {
-          utterance.voice = qualityVoice;
-        } else if (voices.length > 0) {
-          // Use the first available voice as fallback
-          utterance.voice = voices[0];
+        // If no Hindi voice, use any available voice
+        if (!selectedVoice && voices.length > 0) {
+          selectedVoice = voices[0];
         }
         
-        console.log('Using voice:', utterance.voice?.name);
+        if (selectedVoice) {
+          utterance.voice = selectedVoice;
+          utterance.lang = selectedVoice.lang;
+        } else {
+          utterance.lang = 'hi-IN';
+        }
         
-        utterance.lang = 'hi-IN';
-        utterance.rate = 0.75;
+        utterance.rate = 0.8;
         utterance.pitch = 1.0;
         utterance.volume = 1.0;
         
         utterance.onstart = () => {
-          console.log('Speech started');
           toast.success("Playing Sanskrit shloka");
         };
         
         utterance.onerror = (event) => {
-          console.error('Speech error:', event.error);
-          toast.error("Error playing audio: " + event.error);
+          console.error('Speech error:', event);
+          toast.error("Audio playback failed. Try again.");
         };
         
         utterance.onend = () => {
-          console.log('Speech ended');
+          console.log('Playback completed');
         };
         
-        console.log('About to speak:', tree.shloka.sanskrit.substring(0, 50));
+        // Speak the text
         speechSynthesis.speak(utterance);
-      };
-      
-      // Ensure voices are loaded before speaking
-      const voices = speechSynthesis.getVoices();
-      console.log('Initial voices check:', voices.length);
-      if (voices.length === 0) {
-        console.log('Waiting for voices to load...');
-        speechSynthesis.addEventListener('voiceschanged', speak, { once: true });
-      } else {
-        speak();
-      }
+      }, 100);
     } else {
       toast.error("Speech synthesis not supported in your browser");
     }
