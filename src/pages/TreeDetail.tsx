@@ -34,6 +34,8 @@ const TreeDetail = () => {
         
         // Get available voices
         const voices = speechSynthesis.getVoices();
+        console.log('Available voices:', voices.length);
+        console.log('All voices:', voices.map(v => ({ name: v.name, lang: v.lang })));
         
         // Try to find the best Hindi/Indian voice
         const hindiVoice = voices.find(voice => 
@@ -42,6 +44,8 @@ const TreeDetail = () => {
           voice.name.toLowerCase().includes('hindi') ||
           voice.name.toLowerCase().includes('indian')
         );
+        
+        console.log('Hindi voice found:', hindiVoice?.name);
         
         // If no Hindi voice, try to find a high-quality English voice as fallback
         const qualityVoice = voices.find(voice => 
@@ -55,27 +59,41 @@ const TreeDetail = () => {
           utterance.voice = hindiVoice;
         } else if (qualityVoice) {
           utterance.voice = qualityVoice;
+        } else if (voices.length > 0) {
+          // Use the first available voice as fallback
+          utterance.voice = voices[0];
         }
         
+        console.log('Using voice:', utterance.voice?.name);
+        
         utterance.lang = 'hi-IN';
-        utterance.rate = 0.75; // Slower for better clarity
+        utterance.rate = 0.75;
         utterance.pitch = 1.0;
         utterance.volume = 1.0;
         
         utterance.onstart = () => {
+          console.log('Speech started');
           toast.success("Playing Sanskrit shloka");
         };
         
         utterance.onerror = (event) => {
+          console.error('Speech error:', event.error);
           toast.error("Error playing audio: " + event.error);
         };
         
+        utterance.onend = () => {
+          console.log('Speech ended');
+        };
+        
+        console.log('About to speak:', tree.shloka.sanskrit.substring(0, 50));
         speechSynthesis.speak(utterance);
       };
       
       // Ensure voices are loaded before speaking
       const voices = speechSynthesis.getVoices();
+      console.log('Initial voices check:', voices.length);
       if (voices.length === 0) {
+        console.log('Waiting for voices to load...');
         speechSynthesis.addEventListener('voiceschanged', speak, { once: true });
       } else {
         speak();
